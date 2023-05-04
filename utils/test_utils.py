@@ -23,10 +23,10 @@ def test_quick_sort():
 
 
 def test_binary_search():
-    sorted_list = [1, 2, 5, 7, 9, 24]
+    sorted_list = [1, 1, 2, 5, 7, 9, 24, 24]
 
     search_values = [5, 3333, 1, 24]
-    expected_values = [2, -1, 0, 5]
+    expected_values = [3, -1, 0, 6]
     actual_values = [binary_search(sorted_list, 0, len(sorted_list) - 1, value) for value in search_values]
 
     assert actual_values == expected_values

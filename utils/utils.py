@@ -1,10 +1,10 @@
 def binary_search(sequence, start, end, value):
     while start < end:
-        mid = (start + end + 1) >> 1
-        if sequence[mid] > value:
-            end = mid - 1
+        mid = (start + end) >> 1
+        if value > sequence[mid]:
+            start = mid + 1
         else:
-            start = mid
+            end = mid
 
     if sequence[start] == value:
         return start
