@@ -32,7 +32,7 @@ def get_sum_indexes_3(nums, target):
             return sorted([sorted_nums_with_indexes[i][0], sorted_nums_with_indexes[found_index][0]])
 
 
-def get_sum_indexes(nums, target):
+def get_sum_indexes_4(nums, target):
     class ComplexData:
         def __init__(self, nums: list):
             self.nums = sorted(list(enumerate(nums)), key=lambda x: x[1])
@@ -53,3 +53,14 @@ def get_sum_indexes(nums, target):
         found_index = bisect_left(nums, search_value, i + 1)
         if found_index < len(nums) and nums[found_index] == search_value:
             return sorted([nums.get_index(i), nums.get_index(found_index)])
+
+
+def get_sum_indexes(nums, target):
+    hash_map = {}
+
+    for i, num in enumerate(nums):
+        search_value = target - num
+        if search_value in hash_map:
+            return [hash_map[search_value], i]
+
+        hash_map[num] = i
