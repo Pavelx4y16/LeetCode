@@ -27,6 +27,12 @@ def test_binary_search():
 
     search_values = [5, 3333, 1, 24]
     expected_values = [3, -1, 0, 6]
-    actual_values = [binary_search(sorted_list, 0, len(sorted_list) - 1, value) for value in search_values]
+    actual_values = [binary_search(sorted_list, value) for value in search_values]
+
+    assert actual_values == expected_values
+
+    # non trivial sequence
+    sorted_list = [(1, 0), (1, 1), (2, 2), (5, 3), (7, 4), (9, 5), (24, 6), (24, 7)]
+    actual_values = [binary_search(sorted_list, value, key=lambda item: item[0]) for value in search_values]
 
     assert actual_values == expected_values
