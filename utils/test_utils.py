@@ -8,18 +8,19 @@ def test_quick_sort():
     unsorted = [randrange(1_000_000_000) for _ in range(n)]
 
     expected = sorted(unsorted)
-    actual = quick_sort(unsorted, 0, len(unsorted) - 1, lambda first, second: first < second)
+    # in place sort
+    quick_sort(unsorted)
 
-    assert actual == expected
+    assert unsorted == expected
 
     # test list with indexes
     n = 100
     unsorted = [(randrange(1_000_000_000), i) for i in range(n)]
 
     expected = sorted(unsorted)
-    actual = quick_sort(unsorted, 0, len(unsorted) - 1, lambda first, second: first[0] < second[0])
+    quick_sort(unsorted, key=lambda x: x[0])
 
-    assert actual == expected
+    assert unsorted == expected
 
 
 def test_binary_search():

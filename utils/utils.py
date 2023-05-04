@@ -24,23 +24,26 @@ def binary_search(sequence, value, start=0, end=None, key=lambda x: x):
     return -1
 
 
-def quick_sort(sequence, start, end, less):
+def quick_sort(sequence, start=0, end=None, key=lambda x: x):
     """
     Sorts given sequence in place. Sequence should contain elements with identical structure.
     :param sequence: sequence, which will be sorted in place!
     :param start: left pointer of sequence index
     :param end: right pointer of sequence index
-    :param less: mini comparator function, which gives True in case first item is strictly less than second.
+    :param key: if you want to pass not trivial sequences here, provide 'key' as lambda function, it will be applied to
+                all elements of the sequence. By the default key == lambda x: x
     :return: sequence (the same pointer, which was received).
     """
+    end = end or len(sequence) - 1
+
     i, j = start, end
     pivot = sequence[(i + j) >> 1]
 
     while i <= j:
-        while less(sequence[i], pivot):
+        while key(sequence[i]) < key(pivot):
             i += 1
 
-        while less(pivot, sequence[j]):
+        while key(sequence[j]) > key(pivot):
             j -= 1
 
         if i <= j:
@@ -49,8 +52,6 @@ def quick_sort(sequence, start, end, less):
             j -= 1
 
     if start < j:
-        quick_sort(sequence, start, j, less)
+        quick_sort(sequence, start, j, key)
     if i < end:
-        quick_sort(sequence, i, end, less)
-
-    return sequence
+        quick_sort(sequence, i, end, key)
