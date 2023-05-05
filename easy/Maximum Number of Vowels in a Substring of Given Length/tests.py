@@ -1,8 +1,5 @@
 from main import get_max_number
-
-
-def _test(func, expected, **kwargs):
-    assert func(**kwargs) == expected
+from utils.utils import _test
 
 
 def test_standard_1():

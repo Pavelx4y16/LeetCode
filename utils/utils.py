@@ -55,3 +55,8 @@ def quick_sort(sequence, start=0, end=None, key=lambda x: x):
         quick_sort(sequence, start, j, key)
     if i < end:
         quick_sort(sequence, i, end, key)
+
+
+def _test(func, expected, **kwargs):
+    actual = func(**kwargs)
+    assert actual == expected
