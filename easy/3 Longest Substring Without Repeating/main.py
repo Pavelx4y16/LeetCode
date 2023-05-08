@@ -1,4 +1,18 @@
 def get_substring(s):
+    alphas = {}
+    answer = left = 0
+
+    for i, ch in enumerate(s):
+        if ch in alphas and left <= alphas[ch]:
+            left = alphas[ch] + 1
+        else:
+            answer = max(answer, i - left + 1)
+        alphas[ch] = i
+
+    return answer
+
+
+def get_substring_1(s):
     alphas = [False] * 255
     answer = left = right = 0
 
